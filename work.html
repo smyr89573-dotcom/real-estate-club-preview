@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#221c19" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="description" content="النادي العقاري الاستثماري — مبادرة «متر لكل مواطن» من فرص النماء للتنمية المستدامة. تملّك متر بـ150 ألف جنيه، أو اشتغل معانا واكسب عمولة على كل متر." />
+    <title>النادي العقاري الاستثماري — متر لكل مواطن</title>
+    <link rel="icon" type="image/svg+xml" href="/real-estate-club-preview/assets/favicon-64A8cCT7.svg" />
+    <script>
+      // اللقطة الليلية للهيرو تبدأ تحميل قبل الجافاسكربت — في الرئيسية بس
+      ;(function () {
+        var base = '/real-estate-club-preview/' // '/' محليًا، '/real-estate-club-preview/' على GitHub Pages
+        if (location.pathname.replace(/\/+$/, '') + '/' !== base) return
+        var portrait = matchMedia('(max-aspect-ratio: 3/4)').matches
+        var l = document.createElement('link')
+        l.rel = 'preload'
+        l.as = 'image'
+        l.type = 'image/avif'
+        l.setAttribute('fetchpriority', 'high')
+        if (portrait) l.href = base + 'media/mall-night-portrait.avif'
+        else {
+          l.setAttribute('imagesrcset', [640, 960, 1280, 1620].map(function (w) { return base + 'media/mall-night-' + w + '.avif ' + w + 'w' }).join(', '))
+          l.setAttribute('imagesizes', '100vw')
+        }
+        document.head.appendChild(l)
+      })()
+    </script>
+    <script type="module" crossorigin src="/real-estate-club-preview/assets/index-AOZMxYb-.js"></script>
+    <link rel="stylesheet" crossorigin href="/real-estate-club-preview/assets/index-DUI_M9k7.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="padding: 2rem; font-family: sans-serif">الموقع محتاج تفعيل الجافاسكربت عشان يشتغل.</p>
+    </noscript>
+  </body>
+</html>
