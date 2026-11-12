@@ -6,30 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#221c19" />
     <meta name="color-scheme" content="dark" />
+    <!--app-head-->
     <meta name="description" content="النادي العقاري الاستثماري — مبادرة «متر لكل مواطن» من فرص النماء للتنمية المستدامة. تملّك متر بـ150 ألف جنيه، أو اشتغل معانا واكسب عمولة على كل متر." />
     <title>النادي العقاري الاستثماري — متر لكل مواطن</title>
+    <!--/app-head-->
     <link rel="icon" type="image/svg+xml" href="/real-estate-club-preview/assets/favicon-64A8cCT7.svg" />
     <script>
-      // اللقطة الليلية للهيرو تبدأ تحميل قبل الجافاسكربت — في الرئيسية بس
+      // اللقطة الليلية للهيرو تبدأ تحميل قبل الجافاسكربت — في الرئيسية بس.
+      // الصورة جاية من المحتوى المنشور (site-data اللي السيرفر بيحطه فوق)، أو الافتراضية.
       ;(function () {
         var base = '/real-estate-club-preview/' // '/' محليًا، '/real-estate-club-preview/' على GitHub Pages
         if (location.pathname.replace(/\/+$/, '') + '/' !== base) return
-        var portrait = matchMedia('(max-aspect-ratio: 3/4)').matches
+        if (/[?&]preview=/.test(location.search)) return
+        var img = { base: '/media/mall-night', widths: [640, 960, 1280, 1620], portrait: true }
+        try {
+          var data = JSON.parse(document.getElementById('site-data').textContent)
+          var home = data.content.pages.filter(function (p) { return p.path === '/' })[0]
+          var scene = home && home.sections.filter(function (s) { return s.type === 'scene' && s.visible })[0]
+          if (scene) img = scene.data.night
+        } catch (e) {}
+        var root = base.replace(/\/$/, '') + img.base
+        var portrait = img.portrait && matchMedia('(max-aspect-ratio: 3/4)').matches
         var l = document.createElement('link')
         l.rel = 'preload'
         l.as = 'image'
         l.type = 'image/avif'
         l.setAttribute('fetchpriority', 'high')
-        if (portrait) l.href = base + 'media/mall-night-portrait.avif'
+        if (portrait) l.href = root + '-portrait.avif'
         else {
-          l.setAttribute('imagesrcset', [640, 960, 1280, 1620].map(function (w) { return base + 'media/mall-night-' + w + '.avif ' + w + 'w' }).join(', '))
+          l.setAttribute('imagesrcset', img.widths.map(function (w) { return root + '-' + w + '.avif ' + w + 'w' }).join(', '))
           l.setAttribute('imagesizes', '100vw')
         }
         document.head.appendChild(l)
       })()
     </script>
-    <script type="module" crossorigin src="/real-estate-club-preview/assets/index-AOZMxYb-.js"></script>
-    <link rel="stylesheet" crossorigin href="/real-estate-club-preview/assets/index-DUI_M9k7.css">
+    <script type="module" crossorigin src="/real-estate-club-preview/assets/main-T_bDOlve.js"></script>
+    <link rel="stylesheet" crossorigin href="/real-estate-club-preview/assets/main-obJqvU_Q.css">
   </head>
   <body>
     <div id="root"></div>
